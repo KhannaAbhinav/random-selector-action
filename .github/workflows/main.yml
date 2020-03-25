@@ -1,8 +1,8 @@
-name: A workflow for Creating File Leaderboard
+name: A workflow for test Random Selector
 on: push
 jobs:
   build:
-    name: File Leaderboard Action
+    name: Random Selector
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Files
