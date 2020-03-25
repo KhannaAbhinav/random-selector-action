@@ -1,0 +1,27 @@
+name: Random Selector Action
+author: Abhinav Khanna
+description: Select a random value from a list, dictionary(random key selection) or a numeric range
+inputs: 
+  data:
+    description: |
+        Takes values in following format
+        1. string representation of a list
+        2. string representation of a dictionary
+        3. x..y where x = range start, y = range end; x and y inclusive
+    required: True
+  returnCount:
+    description: Number of Values to return
+    required: False
+    default: "1"    
+outputs:
+  selectedValuesList:
+    description:  gives the list of randomly selected value
+  selectedValuesRank:
+    description:  "gives the dictionary of randomly selected value in  { rank: value }; rank starts at 1"
+runs:
+  using: 'node12'
+  main:  'dist/index.js'
+
+branding:
+  icon: 'grid'  
+  color: 'red'
