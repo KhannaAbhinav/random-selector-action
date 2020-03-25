@@ -26,7 +26,7 @@ async function main(): Promise<void> {
           console.debug(`${match[1]}`)
         }
       } else {
-        console.error('Invalid Input')
+        core.setFailed('Invalid Input')
       }
     }
 

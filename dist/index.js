@@ -101,7 +101,7 @@ function main() {
                     }
                 }
                 else {
-                    console.error('Invalid Input');
+                    core.setFailed('Invalid Input');
                 }
             }
             core.setOutput('selectedValuesList', `${data}`);
