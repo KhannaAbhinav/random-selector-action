@@ -1,10 +1,9 @@
 import * as core from '@actions/core'
-import * as pickRandom from 'pick-random'
 import * as _ from 'underscore'
 
 function pickRandomValues(dataList: number[] | string[], returnCount: number): void {
   if (dataList.length < returnCount) core.setFailed('Return count is more than available data')
-  const randomDataList = pickRandom(dataList, {count: returnCount})
+  const randomDataList = _.sample(dataList, returnCount)
   let index = 1
   const randomDataRank = new Map()
   for (const randomData of randomDataList) {

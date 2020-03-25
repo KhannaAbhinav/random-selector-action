@@ -75,12 +75,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
-const pickRandom = __importStar(__webpack_require__(850));
 const _ = __importStar(__webpack_require__(891));
 function pickRandomValues(dataList, returnCount) {
     if (dataList.length < returnCount)
         core.setFailed('Return count is more than available data');
-    const randomDataList = pickRandom(dataList, { count: returnCount });
+    const randomDataList = _.sample(dataList, returnCount);
     let index = 1;
     const randomDataRank = new Map();
     for (const randomData of randomDataList) {
@@ -439,37 +438,6 @@ exports.getState = getState;
 /***/ (function(module) {
 
 module.exports = require("path");
-
-/***/ }),
-
-/***/ 850:
-/***/ (function(module) {
-
-"use strict";
-
-module.exports = (data, opts) => {
-	opts = Object.assign({count: 1}, opts);
-	data = data.slice();
-
-	let count = opts.count;
-
-	if (!Array.isArray(data)) {
-		throw new TypeError('Expected an Array as the first argument');
-	}
-
-	if (count > data.length) {
-		throw new Error('Count must be lower or the same as the number of picks');
-	}
-
-	const ret = [];
-
-	while (count--) {
-		ret.push(data.splice(Math.floor(Math.random() * data.length), 1)[0]);
-	}
-
-	return ret;
-};
-
 
 /***/ }),
 
