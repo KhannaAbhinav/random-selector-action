@@ -5,6 +5,9 @@ jobs:
     name: File Leaderboard Action
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Files
+        uses: actions/checkout@v1
+        
       - name: Random Selector
         id: RandomSelector
         uses: "./"
@@ -12,3 +15,41 @@ jobs:
             data: "[1, 2, 3, 4, 5]"
             returnCount: "2"
       
+      - name: Random Selector Dictionary with Return Count
+        id: RandomSelector
+        uses: "./"
+        with:
+            data: "{1:1, 2:2, 3:3, 4:4, 5:5}"
+            returnCount: "3"
+      
+      - name: Random Selector with No Return Count
+        id: RandomSelector
+        uses: "./"
+        with:
+            data: "[1, 2, 3, 4, 5]"
+      
+      - name: Random Selector with No Return Count
+        id: RandomSelector
+        uses: "./"
+        with:
+            data: "{1:1, 2:2, 3:3, 4:4, 5:5}"
+      
+      - name: Random Selector with No Return Count
+        id: RandomSelector
+        uses: "./"
+        with:
+            data: "{'1':'1', '2':'2', '3':3, '4':4, '5':5}"
+      
+      - name: Random Selector
+        id: RandomSelector
+        uses: "./"
+        with:
+            data: "1..100"
+            returnCount: "5"
+            
+      - name: Random Selector
+        id: RandomSelector
+        uses: "./"
+        with:
+            data: "[1, 2, 3, 4, 5"
+            returnCount: "2"

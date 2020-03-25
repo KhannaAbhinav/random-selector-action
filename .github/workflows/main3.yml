@@ -5,10 +5,6 @@ jobs:
     name: File Leaderboard Action
     runs-on: ubuntu-latest
     steps:
-      - name: Random Selector with No Return Count
-        id: RandomSelector
-        uses: "./"
-        with:
-            data: "{1:1, 2:2, 3:3, 4:4, 5:5}"
+
             
       
