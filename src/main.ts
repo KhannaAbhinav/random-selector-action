@@ -1,37 +1,55 @@
 import * as core from '@actions/core'
-import {isArray, isObject} from 'util'
+import * as pickRandom from 'pick-random'
+import * as _ from 'underscore'
+
+function pickRandomValues(dataList: number[] | string[], returnCount: number): void {
+  if (dataList.length < returnCount) core.setFailed('Return count is more than available data')
+  const randomDataList = pickRandom(dataList, {count: returnCount})
+  let index = 1
+  const randomDataRank = new Map()
+  for (const randomData of randomDataList) {
+    randomDataRank.set(index, randomData)
+    index += 1
+  }
+  core.setOutput('selectedValuesList', JSON.stringify(randomDataList))
+  core.setOutput('selectedValuesRank', JSON.stringify(randomDataRank))
+}
 
 async function main(): Promise<void> {
   try {
     const data = core.getInput('data')
-    const returnCount = core.getInput('returnCount')
+    const returnCount = parseInt(core.getInput('returnCount'))
 
     console.debug(`data :  ${data}`)
     console.debug(`returnCount :  ${returnCount}`)
 
     const regEx = /^(\d+)\.\.(\d+)$/
+
     try {
       const dataObject = JSON.parse(data)
-      if (isArray(dataObject)) {
+      if (Array.isArray(dataObject)) {
         console.debug(`${data} is an array`)
-      } else if (isObject(dataObject)) {
+        pickRandomValues(dataObject, returnCount)
+      } else if (dataObject !== null && typeof dataObject === 'object') {
         console.debug(`${data} is a Dictionary`)
+        pickRandomValues(dataObject.keys(), returnCount)
       }
     } catch (error) {
       if (regEx.test(data)) {
         console.debug(`${data} is a numeric range`)
         const match = regEx.exec(data)
         if (null != match) {
-          console.debug(`${match[0]}`)
           console.debug(`${match[1]}`)
+          console.debug(`${match[2]}`)
+          const start = parseInt(match[1])
+          const end = parseInt(match[2])
+          if (start < end) pickRandomValues(_.range(start, end), returnCount)
+          else pickRandomValues(_.range(end, start), returnCount)
         }
       } else {
         core.setFailed('Invalid Input')
       }
     }
-
-    core.setOutput('selectedValuesList', `${data}`)
-    core.setOutput('selectedValuesRank', `${data}`)
   } catch (error) {
     console.log(error)
     core.setFailed(error.message)
