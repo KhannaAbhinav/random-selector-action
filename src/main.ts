@@ -7,9 +7,15 @@ function pickRandomValues(dataList: number[] | string[], returnCount: number): v
   let index = 1
   const randomDataRank = new Map()
   for (const randomData of randomDataList) {
-    randomDataRank.set(index, randomData)
+    randomDataRank.set(index.toString(), randomData)
     index += 1
   }
+  console.debug(randomDataList)
+  console.debug(randomDataRank)
+
+  console.debug(JSON.stringify(randomDataList))
+  console.debug(JSON.stringify(randomDataRank))
+
   core.setOutput('selectedValuesList', JSON.stringify(randomDataList))
   core.setOutput('selectedValuesRank', JSON.stringify(randomDataRank))
 }
