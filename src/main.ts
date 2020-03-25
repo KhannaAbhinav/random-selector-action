@@ -14,10 +14,10 @@ function pickRandomValues(dataList: number[] | string[], returnCount: number): v
   console.debug(randomDataRank)
 
   console.debug(JSON.stringify(randomDataList))
-  console.debug(JSON.stringify(randomDataRank))
+  console.debug(JSON.stringify(Object.entries(randomDataRank)))
 
   core.setOutput('selectedValuesList', JSON.stringify(randomDataList))
-  core.setOutput('selectedValuesRank', JSON.stringify(randomDataRank))
+  core.setOutput('selectedValuesRank', JSON.stringify(Object.entries(randomDataRank)))
 }
 
 async function main(): Promise<void> {
