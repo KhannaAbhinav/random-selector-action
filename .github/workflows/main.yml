@@ -9,46 +9,46 @@ jobs:
         uses: actions/checkout@v1
         
       - name: Random Selector
-        id: RandomSelector
+        id: RandomSelector1
         uses: "./"
         with:
             data: "[1, 2, 3, 4, 5]"
             returnCount: "2"
       
       - name: Random Selector Dictionary with Return Count
-        id: RandomSelector
+        id: RandomSelector2
         uses: "./"
         with:
             data: "{1:1, 2:2, 3:3, 4:4, 5:5}"
             returnCount: "3"
       
       - name: Random Selector with No Return Count
-        id: RandomSelector
+        id: RandomSelector3
         uses: "./"
         with:
             data: "[1, 2, 3, 4, 5]"
       
       - name: Random Selector with No Return Count
-        id: RandomSelector
+        id: RandomSelector4
         uses: "./"
         with:
             data: "{1:1, 2:2, 3:3, 4:4, 5:5}"
       
       - name: Random Selector with No Return Count
-        id: RandomSelector
+        id: RandomSelector5
         uses: "./"
         with:
             data: "{'1':'1', '2':'2', '3':3, '4':4, '5':5}"
       
       - name: Random Selector
-        id: RandomSelector
+        id: RandomSelector6
         uses: "./"
         with:
             data: "1..100"
             returnCount: "5"
             
       - name: Random Selector
-        id: RandomSelector
+        id: RandomSelector7
         uses: "./"
         with:
             data: "[1, 2, 3, 4, 5"
