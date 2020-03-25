@@ -25,7 +25,18 @@ async function main(): Promise<void> {
 
     const regEx = /^(\d+)\.\.(\d+)$/
 
-    try {
+    if (regEx.test(data)) {
+      console.debug(`${data} is a numeric range`)
+      const match = regEx.exec(data)
+      if (null != match) {
+        console.debug(`${match[1]}`)
+        console.debug(`${match[2]}`)
+        const start = parseInt(match[1])
+        const end = parseInt(match[2])
+        if (start < end) pickRandomValues(_.range(start, end), returnCount)
+        else pickRandomValues(_.range(end, start), returnCount)
+      }
+    } else {
       const dataObject = JSON.parse(data)
       if (Array.isArray(dataObject)) {
         console.debug(`${data} is an array`)
@@ -34,24 +45,8 @@ async function main(): Promise<void> {
         console.debug(`${data} is a Dictionary`)
         pickRandomValues(dataObject.keys(), returnCount)
       }
-    } catch (error) {
-      if (regEx.test(data)) {
-        console.debug(`${data} is a numeric range`)
-        const match = regEx.exec(data)
-        if (null != match) {
-          console.debug(`${match[1]}`)
-          console.debug(`${match[2]}`)
-          const start = parseInt(match[1])
-          const end = parseInt(match[2])
-          if (start < end) pickRandomValues(_.range(start, end), returnCount)
-          else pickRandomValues(_.range(end, start), returnCount)
-        }
-      } else {
-        core.setFailed('Invalid Input')
-      }
     }
   } catch (error) {
-    console.log(error)
     core.setFailed(error.message)
   }
 }
