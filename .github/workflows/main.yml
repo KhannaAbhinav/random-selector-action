@@ -15,6 +15,9 @@ jobs:
             data: "[1, 2, 3, 4, 5]"
             returnCount: "2"
       
+      - name: "Print Random Selector Output"
+        run: 'echo "selectedValuesList Output :  ${{ steps.RandomSelector1.outputs.selectedValuesList }} selectedValuesRank Output :  ${{ steps.RandomSelector1.outputs.selectedValuesRank }}"'
+      
       - name: Random Selector Dictionary with Return Count
         id: RandomSelector2
         uses: "./"
@@ -22,41 +25,58 @@ jobs:
             data: '{"a":1, "b":2, "c":3, "d":4, "e":5}'
             returnCount: "3"
       
+      - name: "Print Random Selector Output"
+        run: 'echo "selectedValuesList Output :  ${{ steps.RandomSelector2.outputs.selectedValuesList }} selectedValuesRank Output :  ${{ steps.RandomSelector2.outputs.selectedValuesRank }}"'
+        
       - name: Random Selector with No Return Count
         id: RandomSelector3
         uses: "./"
         with:
             data: "[1, 2, 3, 4, 5]"
-      
+      - name: "Print Random Selector Output"
+        run: 'echo "selectedValuesList Output :  ${{ steps.RandomSelector3.outputs.selectedValuesList }} selectedValuesRank Output :  ${{ steps.RandomSelector3.outputs.selectedValuesRank }}"'
+        
       - name: Random Selector with No Return Count
         id: RandomSelector4
         uses: "./"
         with:
             data: '{"a":1, "b":2, "c":"3", "d": null, "e":5}'
-      
+      - name: "Print Random Selector Output"
+        run: 'echo "selectedValuesList Output :  ${{ steps.RandomSelector4.outputs.selectedValuesList }} selectedValuesRank Output :  ${{ steps.RandomSelector4.outputs.selectedValuesRank }}"'
+        
       - name: Random Selector with No Return Count
         id: RandomSelector5
         uses: "./"
         with:
             data: '{"a":1, "b":2, "c":3, "d":4, "e":5}'
-      
+      - name: "Print Random Selector Output"
+        run: 'echo "selectedValuesList Output :  ${{ steps.RandomSelector5.outputs.selectedValuesList }} selectedValuesRank Output :  ${{ steps.RandomSelector5.outputs.selectedValuesRank }}"'
+        
       - name: Random Selector
         id: RandomSelector6
         uses: "./"
         with:
             data: "1..100"
             returnCount: "5"
-            
+      
+      - name: "Print Random Selector Output"
+        run: 'echo "selectedValuesList Output :  ${{ steps.RandomSelector6.outputs.selectedValuesList }} selectedValuesRank Output :  ${{ steps.RandomSelector6.outputs.selectedValuesRank }}"'   
+        
       - name: Random Selector
         id: RandomSelector7
         uses: "./"
         with:
             data: "[1, 2, 3, 4, 5"
             returnCount: "2"
-      
+            
+      - name: "Print Random Selector Output"
+        run: 'echo "selectedValuesList Output :  ${{ steps.RandomSelector7.outputs.selectedValuesList }} selectedValuesRank Output :  ${{ steps.RandomSelector7.outputs.selectedValuesRank }}"'
+        
       - name: Random Selector
         id: RandomSelector8
         uses: "./"
         with:
             data: "3....3"
             returnCount: "2"
+      - name: "Print Random Selector Output"
+        run: 'echo "selectedValuesList Output :  ${{ steps.RandomSelector8.outputs.selectedValuesList }} selectedValuesRank Output :  ${{ steps.RandomSelector8.outputs.selectedValuesRank }}"'

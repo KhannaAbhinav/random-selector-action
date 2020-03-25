@@ -42,7 +42,7 @@ async function main(): Promise<void> {
         pickRandomValues(dataObject, returnCount)
       } else if (dataObject !== null && typeof dataObject === 'object') {
         console.debug(`${data} is a Dictionary`)
-        pickRandomValues(dataObject.keys(), returnCount)
+        pickRandomValues(Object.keys(dataObject), returnCount)
       }
     }
   } catch (error) {
