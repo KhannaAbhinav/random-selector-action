@@ -10,20 +10,24 @@ async function main(): Promise<void> {
     console.debug(`returnCount :  ${returnCount}`)
 
     const regEx = /^(\d+)\.\.(\d+)$/
-    const dataObject = JSON.parse(data)
-    if (isArray(dataObject)) {
-      console.debug(`${data} is an array`)
-    } else if (isObject(dataObject)) {
-      console.debug(`${data} is a Dictionary`)
-    } else if (regEx.test(data)) {
-      console.debug(`${data} is a numeric range`)
-      const match = regEx.exec(data)
-      if (null != match) {
-        console.debug(`${match[0]}`)
-        console.debug(`${match[1]}`)
+    try {
+      const dataObject = JSON.parse(data)
+      if (isArray(dataObject)) {
+        console.debug(`${data} is an array`)
+      } else if (isObject(dataObject)) {
+        console.debug(`${data} is a Dictionary`)
       }
-    } else {
-      console.error('Invalid Input')
+    } catch (error) {
+      if (regEx.test(data)) {
+        console.debug(`${data} is a numeric range`)
+        const match = regEx.exec(data)
+        if (null != match) {
+          console.debug(`${match[0]}`)
+          console.debug(`${match[1]}`)
+        }
+      } else {
+        console.error('Invalid Input')
+      }
     }
 
     core.setOutput('selectedValuesList', `${data}`)

@@ -19,7 +19,7 @@ jobs:
         id: RandomSelector2
         uses: "./"
         with:
-            data: "{1:1, 2:2, 3:3, 4:4, 5:5}"
+            data: "{'a':1, 'b':2, 'c':3, 'd':4, 'e':5}"
             returnCount: "3"
       
       - name: Random Selector with No Return Count
@@ -32,7 +32,7 @@ jobs:
         id: RandomSelector4
         uses: "./"
         with:
-            data: "{1:1, 2:2, 3:3, 4:4, 5:5}"
+            data: "{'a':1, 'b':2, 'c':3, 'd':4, 'e':5}"
       
       - name: Random Selector with No Return Count
         id: RandomSelector5
@@ -52,4 +52,11 @@ jobs:
         uses: "./"
         with:
             data: "[1, 2, 3, 4, 5"
+            returnCount: "2"
+      
+      - name: Random Selector
+        id: RandomSelector8
+        uses: "./"
+        with:
+            data: "3....3"
             returnCount: "2"
