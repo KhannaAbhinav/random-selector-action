@@ -7,7 +7,7 @@
     "@actions/core": "^1.2.3",
     "@actions/github": "^2.1.1",
     "@types/underscore": "^1.9.4",
-    "underscore": "^1.9.2"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "@types/jest": "^25.1.1",
